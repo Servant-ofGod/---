@@ -1,0 +1,116 @@
+//===обнулення=========================================================
+@import "_zeroing";
+
+//===шрифт=========================================================
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:regular,500,700&display=swap&subset=cyrillic");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display:regular,500,600italic&display=swap&subset=cyrillic");
+
+
+//===міксини=========================================================
+//===адаптивна-властивісь=========================================================
+/* адаптивна властивість */
+// $maxWidth: 1600;
+$maxwidthContainer: 1600;
+
+// $maxwidthContainer: 1326;
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+	$addSize: $startSize - $minSize;
+
+	@if $type==1 {
+		/* тільки якщо менше контейнеру */
+		#{$property}: $startSize + px;
+
+		@media (max-width: #{$maxwidthContainer + px}) {
+			#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxwidthContainer - 320}));
+		}
+	}
+}
+
+//---підключення--------------------------------
+// @include adaptiv-value("padding", 50, 20, 0);
+
+//===перемінні=========================================================
+$tr: 0.5s;
+$br: 118px;
+
+$q: #F9F9F7;
+$w: #2C2F24;
+$e: #DBDFD0;
+$r: #AD343E;
+
+
+//===базові-стилі=========================================================
+body {
+	font-family: "DM Sans";
+	// color: ;
+}
+
+//===обгортка=========================================================
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: clip;
+
+	.page {
+		flex: 1 1 auto;
+	}
+}
+
+//===сонтейнер=========================================================
+[class*="__container"] {
+	max-width: 1326px;
+	margin: 0 auto;
+	padding: 0px 15px;
+	// 1296px снт
+	// 1600px пол
+
+}
+
+
+//===готові-блоки=========================================================
+// .button {}
+
+.button {
+	display: block;
+	text-align: center;
+	padding: 9px 21px;
+	border-radius: 10px;
+	color: $w;
+	background-color: #0e5500;
+	// @include adaptiv-value("font-size", 16, 14, 1);
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.50;
+	/* 24/16 */
+	transition: all $tr ease 0s;
+
+	&:hover {
+		background-color: $w;
+		color: $e;
+	}
+
+}
+
+
+.as {
+	line-height: 2.00;
+	font-size: 30px;
+}
+
+.asd {
+	background-color: #89ff8f;
+}
+
+.asf {
+	background-color: #ff8989;
+}
+
+.asg {
+	background-color: #89a8ff;
+}
+
+//===підключення-файлів=========================================================
+
+//===шапка=========================================================
+@import "_header";
